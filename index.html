@@ -3,11 +3,11 @@
 <head>
     <title>Surpresa Especial</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
-            padding: 10px;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -20,7 +20,6 @@
             background-size: cover;
             position: relative;
             overflow: hidden;
-            -webkit-text-size-adjust: 100%;
         }
         
         body:after {
@@ -40,8 +39,8 @@
             background-image: url('https://www.transparentpng.com/thumb/rose-petal/rose-petal-png-clipart-1.png');
             background-size: contain;
             background-repeat: no-repeat;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             opacity: 0;
             pointer-events: none;
             z-index: 0;
@@ -63,13 +62,13 @@
         
         .message-box {
             background-color: rgba(255, 245, 245, 0.95);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 15px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             border: 1px solid #ffb6c1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 1s ease-out;
@@ -83,12 +82,11 @@
         }
         
         .header {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #c72c48;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
             animation: float 3s ease-in-out infinite;
-            word-wrap: break-word;
         }
         
         @keyframes float {
@@ -98,14 +96,13 @@
         }
         
         p {
-            line-height: 1.5;
-            font-size: 0.9em;
-            margin: 12px 0;
+            line-height: 1.6;
+            font-size: 1em;
+            margin: 15px 0;
             text-align: left;
             opacity: 0;
             transform: translateX(-20px);
             transition: all 0.8s ease-out;
-            word-wrap: break-word;
         }
         
         .visible p {
@@ -115,65 +112,64 @@
         
         .footer {
             background: rgba(255, 255, 255, 0.95);
-            padding: 12px 20px;
-            border-radius: 40px;
+            padding: 15px 25px;
+            border-radius: 50px;
             font-family: 'Courier New', monospace;
             font-weight: bold;
-            margin-top: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 2px dashed #e91e63;
             position: relative;
             z-index: 10;
             text-align: center;
             max-width: 90%;
-            font-size: 0.9em;
         }
         
         .timer {
             color: #c72c48;
-            font-size: 1.2em;
+            font-size: 1.4em;
             margin: 0 5px;
             font-family: monospace;
             background: rgba(255,255,255,0.7);
-            padding: 3px 8px;
-            border-radius: 8px;
+            padding: 3px 10px;
+            border-radius: 10px;
             display: inline-block;
-            min-width: 70px;
+            min-width: 85px;
         }
         
         .counter {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             background: rgba(255,255,255,0.8);
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.7em;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
             color: #9c27b0;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             z-index: 10;
         }
         
         .music-control {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 15px;
+            left: 15px;
             background: rgba(255,255,255,0.8);
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.7em;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
             color: #9c27b0;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             z-index: 10;
             cursor: pointer;
         }
         
         .flower-icon {
-            font-size: 1em;
+            font-size: 1.2em;
             animation: swing 2s ease-in-out infinite;
         }
         
@@ -189,35 +185,29 @@
             overflow: hidden;
         }
         
-        /* Ajustes para telas muito pequenas */
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
             .header {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
             p {
-                font-size: 0.8em;
+                font-size: 0.9em;
             }
             .footer {
-                font-size: 0.8em;
-                padding: 10px 15px;
+                font-size: 0.9em;
+                padding: 12px 20px;
             }
             .timer {
-                font-size: 1em;
-                min-width: 60px;
-            }
-            .message-box {
-                padding: 15px;
+                font-size: 1.2em;
+                min-width: 75px;
             }
         }
-        
-        /* Ajustes para iPhones */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                /* Correção específica para Safari iOS */
-                height: -webkit-fill-available;
-            }
-        }
-
+    </style>
+</head>
+<body>
+    <!-- Contador zerado -->
+    <div class="counter">
+        <span id="visitCount">0</span> pessoas viram isso
+    </div>
     
     <!-- Controle de música com ícones de flores -->
     <div class="music-control" id="musicControl">
@@ -247,9 +237,10 @@
     <!-- Rodapé criativo com contador destacado -->
     <div class="footer">
         <div style="margin-bottom: 8px;">⏳ Tempo para descobrir quem foi:</div>
-        <div class="timer" id="timer">24:00:00</div>
+ 	<div class="timer" id="timer">24:00:00</div>
         <div style="font-size:0.8em; margin-top:10px;">
             <div>Pista das tulipas: <span style="color:#c72c48">"5 letras no nome"</span></div>
+            
         </div>
     </div>
 
@@ -303,19 +294,19 @@
                 'https://www.pngmart.com/files/7/Rose-Petal-PNG-Image.png'
             ];
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     const petal = document.createElement('div');
                     petal.className = 'petal';
                     petal.style.backgroundImage = `url('${petalImages[Math.floor(Math.random() * petalImages.length)]}')`;
                     petal.style.left = Math.random() * 100 + 'vw';
-                    petal.style.width = (Math.random() * 20 + 15) + 'px';
-                    petal.style.height = (Math.random() * 20 + 15) + 'px';
-                    petal.style.animationDuration = (Math.random() * 8 + 4) + 's';
-                    petal.style.animationDelay = Math.random() * 3 + 's';
+                    petal.style.width = (Math.random() * 30 + 20) + 'px';
+                    petal.style.height = (Math.random() * 30 + 20) + 'px';
+                    petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                    petal.style.animationDelay = Math.random() * 5 + 's';
                     
                     document.body.appendChild(petal);
-                }, i * 400);
+                }, i * 300);
             }
         }
         
@@ -368,11 +359,6 @@
             setTimeout(revealText, 500);
             createPetals();
         };
-        
-        // Correção para iOS evitar zoom
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
     </script>
 </body>
 </html>
