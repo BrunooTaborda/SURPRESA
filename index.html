@@ -1,337 +1,364 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html>
 <head>
+    <title>Surpresa Especial</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafael Patrick - Desenvolvedor Web Full Stack</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXABFN3y3zH+eF5PzZd1rJ9+K3I/5V1ZPj6DgKfDqg3HcX/8EUMF6oK3yXQ9gpr7ZpX2jZ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-  <style>
-      * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+    <style>
         body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #0A0A0A;
-            color: #FFFFFF;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
-        header {
-            background: url('https://cpwebassets.codepen.io/assets/packs/profile-bg-optimized-a5ca8f46aca292507f629c62b09630ad.svg') no-repeat center center, linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
-            background-size: cover;
-            padding: 40px 20px;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
             text-align: center;
+            color: #5a2a2a;
+            background: #fff5f5 url('https://cdn-imgix.headout.com/media/images/2187a36a06952fca309748354a01d2ac-Top%20Attractions%20in%20Amsterdam.jpg?auto=format&w=1051.2&h=540&q=90&fit=fit') no-repeat center center;
+            background-size: cover;
             position: relative;
             overflow: hidden;
         }
-
-        header::after {
+        
+        body:after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(0, 164, 239, 0.2), transparent 70%);
-            animation: pulse 10s infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 245, 0.3);
+            z-index: 0;
         }
 
-        @keyframes pulse {
+        /* Efeito de pétalas */
+        .petal {
+            position: absolute;
+            background-image: url('https://www.transparentpng.com/thumb/rose-petal/rose-petal-png-clipart-1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: falling linear infinite;
+        }
+        
+        @keyframes falling {
             0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.5);
+                top: -10%;
+                opacity: 1;
+                transform: rotate(0deg) translateX(0);
             }
             100% {
-                transform: scale(1);
+                top: 110%;
+                opacity: 0.7;
+                transform: rotate(360deg) translateX(50px);
             }
         }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #00A4EF;
-            z-index: 1;
-            position: relative;
-        }
-
-        header p {
-            font-size: 1.2em;
-            color: #CCCCCC;
-            z-index: 1;
-            position: relative;
-        }
-
-        nav {
-            margin-top: 20px;
-            z-index: 1;
-            position: relative;
-        }
-
-        nav a {
-            margin: 0 15px;
-            color: #FFFFFF;
-            text-decoration: none;
-            font-size: 1em;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #00A4EF;
-            transition: width 0.3s;
-            margin: 0 auto;
-        }
-
-        nav a:hover {
-            color: #00A4EF;
-        }
-
-        nav a:hover::after {
-            width: 50%;
-        }
-
-        main {
-            padding: 60px 20px;
-            max-width: 100vw;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        section h2 {
-            font-size: 2.5em;
+        
+        .message-box {
+            background-color: rgba(255, 245, 245, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid #ffb6c1;
             margin-bottom: 20px;
-            color: #00A4EF;
-            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
             position: relative;
+            z-index: 10;
         }
-
-        section h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: #00A4EF;
-            margin: 10px auto;
-            border-radius: 5px;
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        #about p, #experience p {
-            font-size: 1.1em;
-            color: #CCCCCC;
-            max-width: 800px;
-            margin: 0 auto;
+        
+        .header {
+            font-size: 1.8em;
+            color: #c72c48;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        p {
+            line-height: 1.6;
+            font-size: 1em;
+            margin: 15px 0;
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .visible p {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px dashed #e91e63;
+            position: relative;
+            z-index: 10;
             text-align: center;
+            max-width: 90%;
         }
-
-        #projects .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: #1A1A1A;
-            padding: 20px;
+        
+        .timer {
+            color: #c72c48;
+            font-size: 1.4em;
+            margin: 0 5px;
+            font-family: monospace;
+            background: rgba(255,255,255,0.7);
+            padding: 3px 10px;
             border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
+            display: inline-block;
+            min-width: 85px;
+        }
+        
+        .counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: #9c27b0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 10;
+        }
+        
+        .music-control {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: #9c27b0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        .flower-icon {
+            font-size: 1.2em;
+            animation: swing 2s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        .youtube-player {
+            position: absolute;
+            width: 0;
+            height: 0;
             overflow: hidden;
         }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(0, 164, 239, 0.1), transparent 70%);
-            transition: opacity 0.3s;
-            opacity: 0;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 164, 239, 0.2);
-        }
-
-        .project-card h3 {
-            margin-bottom: 10px;
-            color: #FFFFFF;
-            font-size: 1.5em;
-        }
-
-        .project-card a {
-            color: #00A4EF;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .project-card a:hover {
-            color: #0080C0;
-        }
-
-        #contact .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .contact-links a {
-            color: #FFFFFF;
-            font-size: 2em;
-            transition: color 0.3s;
-        }
-
-        .contact-links a:hover {
-            color: #00A4EF;
-        }
-
-        footer {
-            background: #0D0D0D;
-            text-align: center;
-            padding: 20px;
-            color: #666666;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2.5em;
+        
+        @media (max-width: 480px) {
+            .header {
+                font-size: 1.5em;
             }
-
-            section h2 {
-                font-size: 2em;
+            p {
+                font-size: 0.9em;
+            }
+            .footer {
+                font-size: 0.9em;
+                padding: 12px 20px;
+            }
+            .timer {
+                font-size: 1.2em;
+                min-width: 75px;
             }
         }
-
-
-
-/* From Uiverse.io by csemszepp */ 
-body {
-  width: 100%;
-  height: 100%;
-  --s: 200px; /* control the size */
-  --c1: #1d1d1d;
-  --c2: #4e4f51;
-  --c3: #3c3c3c;
-
-  background: repeating-conic-gradient(
-        from 30deg,
-        #0000 0 120deg,
-        var(--c3) 0 180deg
-      )
-      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
-    repeating-conic-gradient(
-      from 30deg,
-      var(--c1) 0 60deg,
-      var(--c2) 0 120deg,
-      var(--c3) 0 180deg
-    );
-  background-size: var(--s) calc(var(--s) * 0.577);
-}
-
-main{
-  background: #000c;
-    width: 100vw !important;
-}
-  </style>
+    </style>
 </head>
-
 <body>
+    <!-- Contador zerado -->
+    <div class="counter">
+        <span id="visitCount">0</span> pessoas viram isso
+    </div>
+    
+    <!-- Controle de música com ícones de flores -->
+    <div class="music-control" id="musicControl">
+        <span class="flower-icon">🌸</span>
+        <span class="flower-icon">🌹</span>
+        🔇 Som
+    </div>
+    
+    <!-- Player do YouTube (escondido) para Cortando as Brisas -->
+    <div class="youtube-player">
+        <iframe id="youtubeAudio" width="0" height="0" src="https://www.youtube.com/embed/ei2-RjJDBHc?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <!-- Mensagem que será revelada -->
+    <div class="message-box" id="messageBox">
+        <div class="header">🌷 Amanda 🌷</div>
+        
+        <p><em>As tulipas entraram em pânico ao descobrir que teriam que disputar com você hoje, e falaram 'Como competir com alguém tão incrível e ainda por cima boa em deixar pessoas e mensagens sem respostas?'. As rosas, mais corajosas (ou simplesmente conformadas em ficar em segundo lugar), aceitaram o desafio.</em></p>
+        
+        <p><em>Mas até entendo o desespero delas, tu tem um jeito único de ser especial sem esforço daquelas pessoas que ficam na memória, junto com as mensagens nunca respondidas.</em></p>
+        
+        <p><em>Feliz aniversário mocinha! Que seu dia seja tão radiante quanto você e se por um acaso descobrir quem mandou isso ai, dessa vez pelo menos responde a mensagem!</em></p>
+        
+        <p><em>(Dúvidas? Pergunte às flores. Elas sabem de tudo... menos como fazer você responder meus textos).</em></p>
+    </div>
+    
+    <!-- Rodapé criativo com contador destacado -->
+    <div class="footer">
+        <div style="margin-bottom: 8px;">⏳ Tempo para descobrir quem foi:</div>
+ 	<div class="timer" id="timer">24:00:00</div>
+        <div style="font-size:0.8em; margin-top:10px;">
+            <div>Pista das tulipas: <span style="color:#c72c48">"5 letras no nome"</span></div>
+            
+        </div>
+    </div>
 
-    <header>
-        <h1>Rafael Patrick</h1>
-        <p>Desenvolvedor Web Full Stack JavaScript</p>
-        <nav>
-            <a href="#about">Sobre Mim</a>
-            <a href="#experience">Experiência</a>
-            <a href="#projects">Projetos</a>
-            <a href="#contact">Contato</a>
-        </nav>
-    </header>
+    <script>
+        // Contador de visitas zerado
+        localStorage.setItem('visits', 0);
+        document.getElementById('visitCount').textContent = 0;
+        
+        // Contador de 24h
+        function startTimer() {
+            const endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+            
+            function update() {
+                const now = new Date().getTime();
+                const remaining = endTime - now;
+                
+                const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                
+                document.getElementById("timer").innerHTML = 
+                    `${Math.floor(hours).toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (remaining <= 0) {
+                    document.getElementById("timer").innerHTML = "ACABOU!";
+                }
+            }
+            
+            update();
+            setInterval(update, 1000);
+        }
+        
+        // Revelação progressiva do texto
+        function revealText() {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.classList.add('visible');
+            
+            const paragraphs = document.querySelectorAll('p');
+            paragraphs.forEach((p, index) => {
+                setTimeout(() => {
+                    p.classList.add('visible');
+                }, 500 * (index + 1));
+            });
+        }
+        
+        // Criar pétalas caindo
+        function createPetals() {
+            const petalImages = [
+                'https://www.transparentpng.com/thumb/rose-petal/rose-petal-png-clipart-1.png',
+                'https://www.freepngimg.com/thumb/rose_petal/3-2-rose-petal-picture-thumb.png',
+                'https://www.pngmart.com/files/7/Rose-Petal-PNG-Image.png'
+            ];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.backgroundImage = `url('${petalImages[Math.floor(Math.random() * petalImages.length)]}')`;
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.width = (Math.random() * 30 + 20) + 'px';
+                    petal.style.height = (Math.random() * 30 + 20) + 'px';
+                    petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                    petal.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    document.body.appendChild(petal);
+                }, i * 300);
+            }
+        }
+        
+        // Controle de música do YouTube
+        const musicControl = document.getElementById('musicControl');
+        let isMusicPlaying = false;
+        let youtubePlayer;
 
-    <main>
-        <section id="about">
-            <h2>Sobre Mim</h2>
-            <p>Sou um Desenvolvedor Web Full Stack especializado em JavaScript, apaixonado por criar soluções digitais inovadoras e eficientes. Com uma abordagem centrada no usuário, busco desenvolver interfaces amigáveis e experiências interativas que conectem pessoas e tecnologia de forma harmoniosa.</p>
-        </section>
+        // Carrega API YouTube
+        function onYouTubeIframeAPIReady() {
+            youtubePlayer = new YT.Player('youtubeAudio', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
-        <section id="experience">
-            <h2>Experiência</h2>
-            <p>Com mais de 16 anos de experiência na área de tecnologia, transitei por diversos papéis até me consolidar como Desenvolvedor Full Stack. Minha trajetória me proporcionou habilidades sólidas em desenvolvimento de aplicações web, resolução de problemas complexos e colaboração em equipes multidisciplinares.</p>
-        </section>
+        function onPlayerReady(event) {
+            event.target.setVolume(30); // Volume em 30%
+        }
 
-        <section id="projects">
-            <h2>Projetos</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Tesouro Didático</h3>
-                    <a href="https://tesourodidatico.com/" target="_blank">Visitar Site</a>
-                </div>
-                <div class="project-card">
-                    <h3>Peregrinarte</h3>
-                    <a href="https://peregrinarte.vercel.app" target="_blank">Visitar Site</a>
-                </div>
-                <div class="project-card">
-                    <h3>Faculdade Jesuíta</h3>
-                    <a href="https://faculdadejesuita.edu.br/" target="_blank">Visitar Site</a>
-                </div>
-                <div class="project-card">
-                    <h3>Padre Vaz</h3>
-                    <a href="https://padrevaz.com.br/" target="_blank">Visitar Site</a>
-                </div>
-                <div class="project-card">
-                    <h3>Passo a Pensar</h3>
-                    <a href="http://passoapensar.com.br/" target="_blank">Visitar Site</a>
-                </div>
-                <div class="project-card">
-                    <h3>Meu Site</h3>
-                    <a href="https://rafaelpatrick.com.br" target="_blank">Visitar Site</a>
-                </div>
-            </div>
-        </section>
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔇 Som';
+                isMusicPlaying = false;
+            }
+        }
 
-        <section id="contact">
-            <h2>Contato</h2>
-            <div class="contact-links">
-                <a href="mailto:seuemail@dominio.com" target="_blank"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/seuperfil" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/seuusuario" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-        </section>
-    </main>
+        musicControl.addEventListener('click', function() {
+            if (isMusicPlaying) {
+                youtubePlayer.pauseVideo();
+                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔇 Som';
+            } else {
+                youtubePlayer.playVideo();
+                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔊 Som';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
 
-    <footer>
-        &copy; 2024 Rafael Patrick. Todos os direitos reservados.
-    </footer>
-
+        // Carrega a API do YouTube
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        // Iniciar tudo
+        window.onload = function() {
+            startTimer();
+            setTimeout(revealText, 500);
+            createPetals();
+        };
+    </script>
 </body>
-
 </html>
