@@ -223,12 +223,12 @@
     <div class="music-control" id="musicControl">
         <span class="flower-icon">🌸</span>
         <span class="flower-icon">🌹</span>
-        🔊 Som
+        🔇 Som
     </div>
     
     <!-- Player do YouTube (escondido) -->
     <div class="youtube-player">
-        <iframe id="youtubeAudio" width="0" height="0" src="https://www.youtube.com/embed/ei2-RjJDBHc?enablejsapi=1&autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="youtubeAudio" width="0" height="0" src="https://www.youtube.com/embed/ei2-RjJDBHc?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     
     <!-- Mensagem que será revelada -->
@@ -349,13 +349,7 @@
         }
 
         function onPlayerReady(event) {
-            event.target.setVolume(30);
-            // Inicia a música após 3 segundos
-            setTimeout(() => {
-                youtubePlayer.playVideo();
-                isMusicPlaying = true;
-                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔊 Som';
-            }, 3000);
+            event.target.setVolume(30); // Volume em 30%
         }
 
         function onPlayerStateChange(event) {
