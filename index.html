@@ -3,11 +3,11 @@
 <head>
     <title>Surpresa Especial</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
-            padding: 10px;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -20,8 +20,6 @@
             background-size: cover;
             position: relative;
             overflow: hidden;
-            -webkit-text-size-adjust: 100%;
-            touch-action: manipulation;
         }
         
         body:after {
@@ -35,13 +33,14 @@
             z-index: 0;
         }
 
+        /* Efeito de pétalas */
         .petal {
             position: absolute;
             background-image: url('https://www.transparentpng.com/thumb/rose-petal/rose-petal-png-clipart-1.png');
             background-size: contain;
             background-repeat: no-repeat;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             opacity: 0;
             pointer-events: none;
             z-index: 0;
@@ -63,13 +62,13 @@
         
         .message-box {
             background-color: rgba(255, 245, 245, 0.95);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 15px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             border: 1px solid #ffb6c1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 1s ease-out;
@@ -83,12 +82,11 @@
         }
         
         .header {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #c72c48;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
             animation: float 3s ease-in-out infinite;
-            word-wrap: break-word;
         }
         
         @keyframes float {
@@ -98,14 +96,13 @@
         }
         
         p {
-            line-height: 1.5;
-            font-size: 0.9em;
-            margin: 12px 0;
+            line-height: 1.6;
+            font-size: 1em;
+            margin: 15px 0;
             text-align: left;
             opacity: 0;
             transform: translateX(-20px);
             transition: all 0.8s ease-out;
-            word-wrap: break-word;
         }
         
         .visible p {
@@ -115,60 +112,49 @@
         
         .footer {
             background: rgba(255, 255, 255, 0.95);
-            padding: 12px 20px;
-            border-radius: 40px;
+            padding: 15px 25px;
+            border-radius: 50px;
             font-family: 'Courier New', monospace;
             font-weight: bold;
-            margin-top: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 2px dashed #e91e63;
             position: relative;
             z-index: 10;
             text-align: center;
             max-width: 90%;
-            font-size: 0.9em;
         }
         
         .timer {
             color: #c72c48;
-            font-size: 1.2em;
+            font-size: 1.4em;
             margin: 0 5px;
             font-family: monospace;
             background: rgba(255,255,255,0.7);
-            padding: 3px 8px;
-            border-radius: 8px;
+            padding: 3px 10px;
+            border-radius: 10px;
             display: inline-block;
-            min-width: 70px;
+            min-width: 85px;
         }
         
         .music-control {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(255,255,255,0.9);
-            padding: 8px 12px;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8em;
             color: #9c27b0;
             display: flex;
             align-items: center;
             gap: 5px;
-            z-index: 1000;
+            z-index: 10;
             cursor: pointer;
-            min-width: 100px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: transform 0.2s;
-        }
-        
-        .music-control:active {
-            transform: scale(0.95);
-            background: rgba(255,255,255,1);
         }
         
         .flower-icon {
-            font-size: 1em;
+            font-size: 1.2em;
             animation: swing 2s ease-in-out infinite;
         }
         
@@ -184,36 +170,20 @@
             overflow: hidden;
         }
         
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
             .header {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
             p {
-                font-size: 0.8em;
+                font-size: 0.9em;
             }
             .footer {
-                font-size: 0.8em;
-                padding: 10px 15px;
+                font-size: 0.9em;
+                padding: 12px 20px;
             }
             .timer {
-                font-size: 1em;
-                min-width: 60px;
-            }
-            .message-box {
-                padding: 15px;
-            }
-            .music-control {
-                padding: 6px 10px;
-                font-size: 0.7em;
-            }
-        }
-        
-        @supports (-webkit-touch-callout: none) {
-            body {
-                height: -webkit-fill-available;
-            }
-            .music-control {
-                -webkit-touch-callout: none;
+                font-size: 1.2em;
+                min-width: 75px;
             }
         }
     </style>
@@ -226,7 +196,7 @@
         🔇 Som
     </div>
     
-    <!-- Player do YouTube (escondido) -->
+    <!-- Player do YouTube (escondido) para Cortando as Brisas -->
     <div class="youtube-player">
         <iframe id="youtubeAudio" width="0" height="0" src="https://www.youtube.com/embed/ei2-RjJDBHc?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -235,16 +205,18 @@
     <div class="message-box" id="messageBox">
         <div class="header">🌷 Amanda 🌷</div>
         
-        <p><em>As tulipas entraram em pânico ao descobrir que teriam que disputar com você hoje, e falaram 'Como competir com alguém tão incrível e ainda por cima boa em deixar pessoas e mensagens sem respostas?'. As rosas, mais corajosas (ou simplesmente conformadas em ficar em segundo lugar), aceitaram o desafio.</em></p>
+        <p><em>Feliz aniversário, Amanda! Hoje até as flores entraram em crise, as tulipas surtaram e sumiram ao saber que teriam que competir com você no teu dia, e as rosas só aceitaram ficaram em segundo lugar.</em></p>
         
-        <p><em>Mas até entendo o desespero delas, tu tem um jeito único de ser especial sem esforço daquelas pessoas que ficam na memória, junto com as mensagens nunca respondidas.</em></p>
+        <p><em>Eu entendo elas, tu tem um jeito especial de se destacar, até quando deixa no vácuo e some no meio das conversas.</em></p>
         
-        <p><em>Feliz aniversário mocinha! Que seu dia seja tão radiante quanto você e se por um acaso descobrir quem mandou isso ai, dessa vez pelo menos responde a mensagem!</em></p>
+        <p><em>Eu n sei muito o que falar ou fazer, nunca fiz isso antes, então é isso, parabéns! Que seu dia seja doce como teu sorriso, intenso como teu olhar e leve como o jeito que você faz tudo parecer mais bonito sem nem perceber.</em></p>
         
-        <p><em>(Dúvidas? Pergunte às flores. Elas sabem de tudo... menos como fazer você responder meus textos).</em></p>
+        <p><em>E se por acaso descobrir quem mandou, pelo menos responde dessa vez, tá? kkkkk</em></p>
+        
+        <p><em>(Qualquer dúvida, pergunta pras flores. Elas sabem de tudo... menos como fazer você responder).</em></p>
     </div>
     
-    <!-- Rodapé criativo com contador de tempo -->
+    <!-- Rodapé criativo com contador destacado -->
     <div class="footer">
         <div style="margin-bottom: 8px;">⏳ Tempo para descobrir quem foi:</div>
         <div class="timer" id="timer">24:00:00</div>
@@ -267,7 +239,7 @@
                 const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
                 
                 document.getElementById("timer").innerHTML = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    `${Math.floor(hours).toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 
                 if (remaining <= 0) {
                     document.getElementById("timer").innerHTML = "ACABOU!";
@@ -299,48 +271,30 @@
                 'https://www.pngmart.com/files/7/Rose-Petal-PNG-Image.png'
             ];
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     const petal = document.createElement('div');
                     petal.className = 'petal';
                     petal.style.backgroundImage = `url('${petalImages[Math.floor(Math.random() * petalImages.length)]}')`;
                     petal.style.left = Math.random() * 100 + 'vw';
-                    petal.style.width = (Math.random() * 20 + 15) + 'px';
-                    petal.style.height = (Math.random() * 20 + 15) + 'px';
-                    petal.style.animationDuration = (Math.random() * 8 + 4) + 's';
-                    petal.style.animationDelay = Math.random() * 3 + 's';
+                    petal.style.width = (Math.random() * 30 + 20) + 'px';
+                    petal.style.height = (Math.random() * 30 + 20) + 'px';
+                    petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                    petal.style.animationDelay = Math.random() * 5 + 's';
                     
                     document.body.appendChild(petal);
-                }, i * 400);
+                }, i * 300);
             }
         }
         
         // Controle de música do YouTube
         const musicControl = document.getElementById('musicControl');
         let isMusicPlaying = false;
-        let youtubePlayer;
+        let player;
 
-        function toggleMusic(e) {
-            if (e) e.preventDefault();
-            if (isMusicPlaying) {
-                youtubePlayer.pauseVideo();
-                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔇 Som';
-            } else {
-                youtubePlayer.playVideo();
-                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔊 Som';
-            }
-            isMusicPlaying = !isMusicPlaying;
-            
-            // Feedback visual
-            musicControl.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                musicControl.style.transform = 'scale(1)';
-            }, 100);
-        }
-
-        // Carrega API YouTube
+        // Função para carregar o player do YouTube
         function onYouTubeIframeAPIReady() {
-            youtubePlayer = new YT.Player('youtubeAudio', {
+            player = new YT.Player('youtubeAudio', {
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
@@ -353,17 +307,28 @@
         }
 
         function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) {
+            if (event.data === YT.PlayerState.ENDED) {
                 musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔇 Som';
                 isMusicPlaying = false;
             }
         }
 
-        // Adicionando eventos para touch e click
-        musicControl.addEventListener('click', toggleMusic);
-        musicControl.addEventListener('touchend', toggleMusic);
+        musicControl.addEventListener('click', function() {
+            if (!player) return;
+            
+            if (isMusicPlaying) {
+                player.pauseVideo();
+                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔇 Som';
+            } else {
+                player.playVideo();
+                musicControl.innerHTML = '<span class="flower-icon">🌸</span><span class="flower-icon">🌹</span> 🔊 Som';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
 
         // Carrega a API do YouTube
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+        
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -375,11 +340,6 @@
             setTimeout(revealText, 500);
             createPetals();
         };
-        
-        // Prevenção de zoom e toques fantasmas
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
     </script>
 </body>
 </html>
